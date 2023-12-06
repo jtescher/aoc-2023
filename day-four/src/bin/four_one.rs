@@ -8,12 +8,10 @@ fn main() {
         .filter_map(|line| {
             let (correct, guesses) = line.split_once(':').unwrap().1.split_once('|').unwrap();
             let correct = correct
-                .trim()
                 .split_whitespace()
                 .map(|num| num.parse().unwrap())
                 .collect::<HashSet<u32>>();
             let count = guesses
-                .trim()
                 .split_whitespace()
                 .map(|num| num.parse().unwrap())
                 .filter(|num| correct.contains(num))

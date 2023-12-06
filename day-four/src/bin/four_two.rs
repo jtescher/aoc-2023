@@ -12,12 +12,10 @@ fn main() {
             let (correct, guesses) = card_data.split_once('|').unwrap();
 
             let correct = correct
-                .trim()
                 .split_whitespace()
                 .map(|num| num.parse().unwrap())
                 .collect::<HashSet<usize>>();
             let hits = guesses
-                .trim()
                 .split_whitespace()
                 .map(|num| num.parse().unwrap())
                 .filter(|num| correct.contains(num))
