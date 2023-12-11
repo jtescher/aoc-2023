@@ -62,7 +62,7 @@ fn main() {
         .collect();
 
     hands.sort_unstable_by(|(a_type, a_hand, _), (b_type, b_hand, _)| {
-        a_type.cmp(&b_type).then_with(|| {
+        a_type.cmp(b_type).then_with(|| {
             a_hand
                 .iter()
                 .zip(b_hand.iter())

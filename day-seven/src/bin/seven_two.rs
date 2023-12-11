@@ -22,12 +22,10 @@ fn hand_type(match_count: usize, max_match_count: u32, j_count: u32) -> u32 {
                 } else {
                     2 - j_count // four of a kind
                 }
+            } else if j_count == 3 || j_count == 2 {
+                1 // five of a kind with wilds
             } else {
-                if j_count == 3 || j_count == 2 {
-                    1 // five of a kind with wilds
-                } else {
-                    3 // full house
-                }
+                3 // full house
             }
         }
         3 => {
@@ -37,14 +35,12 @@ fn hand_type(match_count: usize, max_match_count: u32, j_count: u32) -> u32 {
                 } else {
                     4 // three of a kind
                 }
+            } else if j_count == 2 {
+                2 // four of a kind
+            } else if j_count == 1 {
+                3 // full house
             } else {
-                if j_count == 2 {
-                    2 // four of a kind
-                } else if j_count == 1 {
-                    3 // full house
-                } else {
-                    5 // two pair
-                }
+                5 // two pair
             }
         }
         4 => {
@@ -88,7 +84,7 @@ fn main() {
         .collect::<Vec<_>>();
 
     hands.sort_unstable_by(|(a_type, a_hand, _), (b_type, b_hand, _)| {
-        a_type.cmp(&b_type).then_with(|| {
+        a_type.cmp(b_type).then_with(|| {
             a_hand
                 .iter()
                 .zip(b_hand.iter())

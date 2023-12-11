@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, mem};
 
 fn main() {
     let input = include_str!("input.txt");
@@ -35,18 +35,16 @@ fn gcd(mut a: usize, mut b: usize) -> usize {
         return a;
     }
     if b > a {
-        let temp = a;
-        a = b;
-        b = temp;
+        mem::swap(&mut a, &mut b);
     }
     while b > 0 {
         let temp = a;
         a = b;
         b = temp % b;
     }
-    return a;
+    a
 }
 
 fn least_common_multiple(a: usize, b: usize) -> usize {
-    return a * (b / gcd(a, b));
+    a * (b / gcd(a, b))
 }

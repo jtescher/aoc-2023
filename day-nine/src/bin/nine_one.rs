@@ -21,7 +21,7 @@ fn main() {
 
             let mut last = 0;
             for row in rows.iter_mut().rev().skip(1) {
-                last = row[row.len() - 1] + last;
+                last += row[row.len() - 1];
                 row.push(last);
             }
 
