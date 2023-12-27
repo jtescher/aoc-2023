@@ -9,7 +9,7 @@ fn main() {
     let solution = (0..grid.len())
         .map(|r| ((r as i32, 0), Dir::Right))
         .chain((0..grid.len()).map(|r| ((r as i32, (grid[0].len() - 1) as i32), Dir::Left)))
-        .chain((0..grid[0].len()).map(|c| ((0 as i32, c as i32), Dir::Down)))
+        .chain((0..grid[0].len()).map(|c| ((0, c as i32), Dir::Down)))
         .chain((0..grid[0].len()).map(|c| (((grid.len() - 1) as i32, c as i32), Dir::Up)))
         .map(|(init, dir)| {
             let mut beams = vec![(init, dir)];
